@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ConexionSqlServer;
 using Npgsql;
 
 namespace Vinateria
@@ -23,9 +22,10 @@ namespace Vinateria
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //ConexionDB conectar = new ConexionDB();
-            SqlServerConnection conectar = new SqlServerConnection();
+            ConexionDB conectar = new ConexionDB();
             NpgsqlConnection con = conectar.conexion();
+
+            ConexionDB sqlConectar = new ConexionDB();
 
             string sentencia = "Insert into clientes(nomclien,metpago,telefono) values" + 
                 " ('"+textBox1.Text+"','"+comboBox1.Text+"','"+textBox2.Text+"');";

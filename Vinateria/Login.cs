@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,30 +21,29 @@ namespace Vinateria
         public Login()
         {
             InitializeComponent();
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             ConexionDB conectar = new ConexionDB();
-            NpgsqlConnection con = conectar.conexion();
+            conectar.OpenConnection();
 
-            string sentencia1 = "SELECT IDEmp,puesto FROM Empleados WHERE rfc = '"+ textBox1.Text +"' and Contraseña = '"+
-            textBox2.Text +"';";
+            string sqlSentencia = "SELECT * FROM [Empleados].[dbo].[infoEmpleado]  WHERE sUsuario = '" + textBox1.Text + "' AND sPassword = '" + textBox2.Text + "'";
+            SqlDataReader reader = conectar.EjecutarConsulta(sqlSentencia);
 
-            NpgsqlCommand cmd = new NpgsqlCommand(sentencia1, con);
-            NpgsqlDataReader reader = cmd.ExecuteReader();
 
-            if(reader.Read())
+            if (reader.Read())
             {
                 int id = reader.GetInt32(0);
-                string puesto = reader.GetString(1);
-                MessageBox.Show("Bienvenido");
+                int puesto = reader.GetInt32(8);
+                string sUsuario = reader.GetString(6);
+                MessageBox.Show("Bienvenido: " + sUsuario);
                 //Form form = new Message_Box("Bienvenido");
                 //form.Show();
                 
 
-                if(puesto == "Empleado")
+                if(puesto == 1)
                 {
                  Form formulario = new Ventas(id);
                  formulario.Show();
@@ -54,15 +54,17 @@ namespace Vinateria
                     formulario2.Show();
                 }
               
-                con.Close();
+                
+                conectar.CloseConnection();
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("Error, usuario o contraseña incorrectos");
+                //modificar propiedades de MessageBox
+                MessageBox.Show("Error, el usuario o contraseña incorrectos");
             }
-
-            con.Close();
+            conectar.CloseConnection();
+            
             
         }
 
@@ -92,6 +94,16 @@ namespace Vinateria
         private void Login_MouseUp(object sender, MouseEventArgs e)
         {
             vai = false;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     } 
      

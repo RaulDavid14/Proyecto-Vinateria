@@ -14,7 +14,6 @@ namespace Vinateria
     
     public partial class Ventas : Form
     {
-
         public int IDEmp;
         public List<Producto> listprod = new List<Producto>();
         public Producto prodtemp;

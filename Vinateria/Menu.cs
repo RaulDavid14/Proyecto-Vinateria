@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace Vinateria
 {
+    //CLASE QUE DIRECCIONA A LAS OPCIONES DEL MENU
     public partial class Menu : Form
     {
         public int id;

@@ -23,6 +23,7 @@ namespace Vinateria
         private void button1_Click(object sender, EventArgs e)
         {
             ConexionDB conectar = new ConexionDB();
+            conectar.OpenConnection();
             NpgsqlConnection con = conectar.conexion();
             
             string sentencia = "INSERT INTO Empleados(nomemp, apellidos, rfc, puesto, fechaingreso, " +
@@ -30,8 +31,17 @@ namespace Vinateria
                                 textBox3.Text + "','" + comboBox1.Text + "','" + dateTimePicker1.Text + "',"+ 
                                 textBox4.Text + ",'"+ textBox5.Text +"','"+ textBox6.Text +"','"+ textBox7.Text +"','"+ textBox8.Text +"');";
 
-            if(textBox8.Text != textBox9.Text)
-                MessageBox.Show("Las contraseñas no son iguales");
+            string sqlConsulta = "INSERT INTO Empleados.dbo.infoEmpleado" +
+                                "( [sNombre] " +
+                                ",[sApellidoPaterno] " +
+                                ",[sApellidoMaterno] " +
+                                ",[sRFC] " +
+                                ",[sUsuario] " +
+                                ",[sPassword] " +
+                                ",[dFechaIngreso] " +
+                                ",[catTipoEmpleado] ) ";
+            if (textBox8.Text != textBox9.Text)
+                MessageBox.Show("Deben coincidir las contraseñas");
             else
             {
                 NpgsqlCommand cmd = new NpgsqlCommand(sentencia, con);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -28,12 +29,12 @@ namespace Vinateria
             dataGridView1.Rows.Clear();
 
             ConexionDB conectar = new ConexionDB();
-            NpgsqlConnection con = conectar.conexion();
+            conectar.OpenConnection();
 
-            string sentencia1 = "SELECT *,cast(fechaingreso as varchar),cast(fechasalida as varchar) from empleados;";
-
-            NpgsqlCommand cmd = new NpgsqlCommand(sentencia1, con);
-            NpgsqlDataReader reader = cmd.ExecuteReader();
+            string sqlSentencia = "SELECT * FROM [Empleados].[dbo].[infoEmpleado]  WHERE sUsuario = '" + textBox1.Text + "' AND sPassword = ''";
+            sqlSentencia = "SELECT dFechaIngreso FROM[Empleados].[dbo].[infoEmpleado]";
+            SqlDataReader reader = conectar.EjecutarConsulta(sqlSentencia);
+           
 
             string fecha;
 
@@ -60,8 +61,8 @@ namespace Vinateria
                 );
 
             }
-
-            con.Close();
+            conectar.CloseConnection();
+            
         }
 
 
@@ -110,7 +111,7 @@ namespace Vinateria
             NpgsqlConnection con = conectar.conexion();
 
             string sentencia1 = "SELECT *,cast(fechaingreso as varchar),cast(fechasalida as varchar) from empleados where nomemp like '" + dato + "' or apellidos like '" + dato + "';";
-
+            
             NpgsqlCommand cmd = new NpgsqlCommand(sentencia1, con);
             NpgsqlDataReader reader = cmd.ExecuteReader();
 
@@ -139,8 +140,8 @@ namespace Vinateria
                 );
                 
             }
-
-            con.Close();
+            conectar.CloseConnection();
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -171,9 +172,9 @@ namespace Vinateria
                 
                 cmd.Dispose();
 
-                
 
-                con.Close();
+                conectar.CloseConnection();
+                
 
                 string dato = "%" + textBox1.Text + "%";
                 getBuscar(dato);
