@@ -39,7 +39,9 @@ namespace Vinateria
                                 ",[sUsuario] " +
                                 ",[sPassword] " +
                                 ",[dFechaIngreso] " +
-                                ",[catTipoEmpleado] ) ";
+                                ",[catTipoEmpleado] ) VALUES" +
+                                "()";
+                                
             if (textBox8.Text != textBox9.Text)
                 MessageBox.Show("Deben coincidir las contraseñas");
             else
@@ -70,6 +72,11 @@ namespace Vinateria
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
