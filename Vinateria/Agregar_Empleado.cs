@@ -16,8 +16,8 @@ namespace Vinateria
         public Agregar_Empleado()
         {
             InitializeComponent();
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList; //Cancelar escritura del combobox
-            comboBox1.Text = "Empleado"; //Texto Empleado por defecto en combobox
+            /*comboBox1.DropDownStyle = ComboBoxStyle.DropDownList; //Cancelar escritura del combobox
+            comboBox1.Text = "Empleado"; //Texto Empleado por defecto en combobox*/
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -26,12 +26,12 @@ namespace Vinateria
             conectar.OpenConnection();
             NpgsqlConnection con = conectar.conexion();
             
-            string sentencia = "INSERT INTO Empleados(nomemp, apellidos, rfc, puesto, fechaingreso, " +
+            /*string sentencia = "INSERT INTO Empleados(nomemp, apellidos, rfc, puesto, fechaingreso, " +
                                 "sueldo, horario, genero, usuario, contraseña) values ('" + textBox1.Text + "','" + textBox2.Text + "','" + 
                                 textBox3.Text + "','" + comboBox1.Text + "','" + dateTimePicker1.Text + "',"+ 
-                                textBox4.Text + ",'"+ textBox5.Text +"','"+ textBox6.Text +"','"+ textBox7.Text +"','"+ textBox8.Text +"');";
+                                textBox4.Text + ",'"+ textBox5.Text +"','"+ textBox6.Text +"','"+ textBox7.Text +"','"+ textBox8.Text +"');";*/
 
-            string sqlConsulta = "INSERT INTO Empleados.dbo.infoEmpleado" +
+            string sentencia = "INSERT INTO Empleados.dbo.infoEmpleado" +
                                 "( [sNombre] " +
                                 ",[sApellidoPaterno] " +
                                 ",[sApellidoMaterno] " +
@@ -40,7 +40,9 @@ namespace Vinateria
                                 ",[sPassword] " +
                                 ",[dFechaIngreso] " +
                                 ",[catTipoEmpleado] ) VALUES" +
-                                "()";
+                                "(" +
+                                "''" +
+                                ")";
                                 
             if (textBox8.Text != textBox9.Text)
                 MessageBox.Show("Deben coincidir las contraseñas");
@@ -75,6 +77,16 @@ namespace Vinateria
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }
