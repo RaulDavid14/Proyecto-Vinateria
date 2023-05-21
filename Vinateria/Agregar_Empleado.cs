@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 using Npgsql;
 
 namespace Vinateria
@@ -26,11 +27,7 @@ namespace Vinateria
             conectar.OpenConnection();
             NpgsqlConnection con = conectar.conexion();
             
-            /*string sentencia = "INSERT INTO Empleados(nomemp, apellidos, rfc, puesto, fechaingreso, " +
-                                "sueldo, horario, genero, usuario, contraseña) values ('" + textBox1.Text + "','" + textBox2.Text + "','" + 
-                                textBox3.Text + "','" + comboBox1.Text + "','" + dateTimePicker1.Text + "',"+ 
-                                textBox4.Text + ",'"+ textBox5.Text +"','"+ textBox6.Text +"','"+ textBox7.Text +"','"+ textBox8.Text +"');";*/
-
+           
             string sentencia = "INSERT INTO Empleados.dbo.infoEmpleado" +
                                 "( [sNombre] " +
                                 ",[sApellidoPaterno] " +
@@ -40,19 +37,23 @@ namespace Vinateria
                                 ",[sPassword] " +
                                 ",[dFechaIngreso] " +
                                 ",[catTipoEmpleado] ) VALUES" +
-                                "(" +
-                                "''" +
+                                "( '" + tbNombres.Text + "'" +
+                                ", '" + tbPaterno.Text + "'" +
+                                ", '" + tbMaterno.Text + "'" +
+                                ", '" + tbRFC.Text + "'" +
+                                ", '" + tbUsuario.Text + 
+                                ", '" + tbRFC + "'" +
+                                ", GETDATE()" +
+                                "1" +
                                 ")";
-                                
-            if (textBox8.Text != textBox9.Text)
-                MessageBox.Show("Deben coincidir las contraseñas");
-            else
-            {
-                NpgsqlCommand cmd = new NpgsqlCommand(sentencia, con);
+
+
+            SqlDataReader reader = conectar.EjecutarConsulta(sentencia);
+
+            NpgsqlCommand cmd = new NpgsqlCommand(sentencia, con);
                 cmd.ExecuteReader();
                 cmd.Dispose();
-                MessageBox.Show("Empleado agregado");
-            }
+                MessageBox.Show("Empleado agregado con éxito.");
 
             con.Close();
 

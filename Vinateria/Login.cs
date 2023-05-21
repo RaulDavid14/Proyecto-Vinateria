@@ -39,8 +39,7 @@ namespace Vinateria
                 int puesto = reader.GetInt32(8);
                 string sUsuario = reader.GetString(6);
                 MessageBox.Show("Bienvenido: " + sUsuario);
-                //Form form = new Message_Box("Bienvenido");
-                //form.Show();
+               
                 
 
                 if(puesto == 1)
