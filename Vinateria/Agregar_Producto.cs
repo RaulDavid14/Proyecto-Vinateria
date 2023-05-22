@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 using Npgsql;
 
 namespace Vinateria
@@ -26,12 +27,14 @@ namespace Vinateria
             dataGridView1.Rows.Clear();
 
             ConexionDB conectar = new ConexionDB();
-            NpgsqlConnection con = conectar.conexion();
 
-            string sentencia1 = "Select * from proveedores;";
 
-            NpgsqlCommand cmd = new NpgsqlCommand(sentencia1, con);
-            NpgsqlDataReader reader = cmd.ExecuteReader();
+            //string sentencia1 = "Select * from proveedores;";
+            string sqlSentencia = "SELECT * FROM [Provedores].[dbo].[infoProvedores]";
+
+            SqlDataReader reader = conectar.EjecutarConsulta(sqlSentencia);
+
+            
 
             while (reader.Read())
             {
@@ -43,7 +46,8 @@ namespace Vinateria
                 );
             }
 
-            con.Close();
+            conectar.CloseConnection();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -52,6 +56,12 @@ namespace Vinateria
             NpgsqlConnection con = conectar.conexion();
 
             string sentencia1 = "Insert into productos (nomprod,preciomay,preciomen,existencia,tipo,descuento,idprov) values ('"+textBox1.Text+"',"+textBox2.Text+","+textBox3.Text+","+textBox4.Text+",'"+textBox5.Text+"',"+textBox6.Text+","+textBox7.Text+");";
+            string sqlSentencia2 = "INSERT INTO [Provedores].[dbo].[infoProvedores]" +
+                "([sNombreProvedor]" +
+                "[sDireccion]" +
+                "[nTelefono])" +
+                "VALUES" +
+                "()";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sentencia1, con);
             

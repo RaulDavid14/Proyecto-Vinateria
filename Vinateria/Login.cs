@@ -38,10 +38,7 @@ namespace Vinateria
                 int id = reader.GetInt32(0);
                 int puesto = reader.GetInt32(8);
                 string sUsuario = reader.GetString(6);
-                MessageBox.Show("Bienvenido: " + sUsuario);
-               
-                
-
+            
                 if(puesto == 1)
                 {
                  Form formulario = new Ventas(id);
@@ -52,19 +49,17 @@ namespace Vinateria
                     Form formulario2 = new Menu(id);
                     formulario2.Show();
                 }
-              
                 
                 conectar.CloseConnection();
                 this.Hide();
             }
             else
             {
-                //modificar propiedades de MessageBox
+               
                 MessageBox.Show("Error, el usuario o contraseña incorrectos");
             }
             conectar.CloseConnection();
-            
-            
+           
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -28,10 +28,12 @@ namespace Vinateria
             ConexionDB sqlConectar = new ConexionDB();
 
             string sentencia = "Insert into clientes(nomclien,metpago,telefono) values" + 
-                " ('"+sNombreCliente.Text+"','"+cbMetodoPago.Text+"','"+tb.Text+"');";
+                " ('"+sNombreCliente.Text+"','"+cbMetodoPago.Text+"','"+tbTelefono.Text+"');";
             string sqlSentencia = "INSERT INTO [Clientes].[dbo].[infoClientes] " +
                 "VALUES (" +
-                "'"+"'" +
+                "'" + sNombreCliente.Text + "'" +
+                "'" + cbMetodoPago.Text + "'" +
+                "'" + tbTelefono.Text + "'" +
                 ")";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sentencia, con);

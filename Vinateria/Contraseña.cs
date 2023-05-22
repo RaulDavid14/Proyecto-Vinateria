@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 using Npgsql;
 
 namespace Vinateria
@@ -63,7 +64,7 @@ namespace Vinateria
                     cm.Dispose();
                     con.Close();
 
-                    MessageBox.Show("Contraseña cambiada");
+                    MessageBox.Show("Contraseña cambiada.");
 
                     Form log = new Ventas(IDEmp);
                     log.Show();
@@ -71,7 +72,7 @@ namespace Vinateria
                 }
                 else
                 {
-                    MessageBox.Show("Contraseña incorrecta");
+                    MessageBox.Show("Contraseña incorrecta.");
                 }
                 
               con.Close();

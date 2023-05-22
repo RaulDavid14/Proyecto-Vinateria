@@ -35,7 +35,7 @@ namespace Vinateria
             this.cbMetodoPago = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.tb = new System.Windows.Forms.TextBox();
+            this.tbTelefono = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -108,17 +108,17 @@ namespace Vinateria
             this.label3.TabIndex = 6;
             this.label3.Text = "Telefono:";
             // 
-            // tb
+            // tbTelefono
             // 
-            this.tb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.tb.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.tb.Location = new System.Drawing.Point(106, 131);
-            this.tb.MaxLength = 13;
-            this.tb.Name = "tb";
-            this.tb.Size = new System.Drawing.Size(100, 13);
-            this.tb.TabIndex = 7;
-            this.tb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            this.tbTelefono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tbTelefono.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbTelefono.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.tbTelefono.Location = new System.Drawing.Point(106, 131);
+            this.tbTelefono.MaxLength = 13;
+            this.tbTelefono.Name = "tbTelefono";
+            this.tbTelefono.Size = new System.Drawing.Size(100, 13);
+            this.tbTelefono.TabIndex = 7;
+            this.tbTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // button1
             // 
@@ -140,7 +140,7 @@ namespace Vinateria
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(312, 292);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.tb);
+            this.Controls.Add(this.tbTelefono);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.cbMetodoPago);
@@ -162,7 +162,7 @@ namespace Vinateria
         private System.Windows.Forms.ComboBox cbMetodoPago;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tb;
+        private System.Windows.Forms.TextBox tbTelefono;
         private System.Windows.Forms.Button button1;
     }
 }

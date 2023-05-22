@@ -17,15 +17,15 @@ namespace Vinateria
         public Agregar_Empleado()
         {
             InitializeComponent();
-            /*comboBox1.DropDownStyle = ComboBoxStyle.DropDownList; //Cancelar escritura del combobox
-            comboBox1.Text = "Empleado"; //Texto Empleado por defecto en combobox*/
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             ConexionDB conectar = new ConexionDB();
             conectar.OpenConnection();
-            NpgsqlConnection con = conectar.conexion();
+
+            //NpgsqlConnection con = conectar.conexion();
             
            
             string sentencia = "INSERT INTO [Empleados].[dbo].[infoEmpleado]" +
@@ -49,13 +49,11 @@ namespace Vinateria
 
 
             SqlDataReader reader = conectar.EjecutarConsulta(sentencia);
-
-            NpgsqlCommand cmd = new NpgsqlCommand(sentencia, con);
-                cmd.ExecuteReader();
-                cmd.Dispose();
+            
                 MessageBox.Show("Empleado agregado con éxito.");
 
-            con.Close();
+           // con.Close();
+            conectar.CloseConnection();
 
             this.Close();
         }
