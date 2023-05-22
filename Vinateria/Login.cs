@@ -59,7 +59,6 @@ namespace Vinateria
             }
             else
             {
-                //modificar propiedades de MessageBox
                 MessageBox.Show("Error, el usuario o contraseña incorrectos");
             }
             conectar.CloseConnection();

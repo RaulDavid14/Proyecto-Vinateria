@@ -23,20 +23,25 @@ namespace Vinateria
         private void button2_Click(object sender, EventArgs e)
         {
             ConexionDB conectar = new ConexionDB();
-            NpgsqlConnection con = conectar.conexion();
+            conectar.OpenConnection();
+            
+            string sqlSentencia = "INSERT INTO [Clientes].[dbo].[infoClientes]" +
+                "([sNombreCliente]" +
+                " ,[sMetodoPago]" +
+                ",[telefono])" +
+                "VALUES" +
+                "(" +
+                "'"+ textBox1.Text + "'" +
+                "'" + comboBox1.Text + "'" +
+                "'" + textBox2.Text +"'" +
+                ")";
 
-            ConexionDB sqlConectar = new ConexionDB();
+            conectar.EjecutarConsulta(sqlSentencia);
 
-            string sentencia = "Insert into clientes(nomclien,metpago,telefono) values" + 
-                " ('"+textBox1.Text+"','"+comboBox1.Text+"','"+textBox2.Text+"');";
-            string sqlSentencia = "INSERT INTO ";
-
-            NpgsqlCommand cmd = new NpgsqlCommand(sentencia, con);
-            cmd.ExecuteReader();
-            cmd.Dispose();
             MessageBox.Show("Cliente agregado");
 
-            con.Close();
+            conectar.CloseConnection();
+            //con.Close();
             this.Close();
         }
 

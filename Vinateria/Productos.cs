@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 using Npgsql;
 
 namespace Vinateria
@@ -28,13 +29,17 @@ namespace Vinateria
             dataGridView1.Rows.Clear();
 
             ConexionDB conectar = new ConexionDB();
+            conectar.OpenConnection();
+
             NpgsqlConnection con = conectar.conexion();
 
             string sentencia1 = "SELECT * from productos order by idprod;";
+            string sqlConsulta = "SELECT * FROM [Productos].[dbo].[infoProductos]";
+            
+            //NpgsqlCommand cmd = new NpgsqlCommand(sentencia1, con);
+            //NpgsqlDataReader reader = cmd.ExecuteReader();
 
-            NpgsqlCommand cmd = new NpgsqlCommand(sentencia1, con);
-            NpgsqlDataReader reader = cmd.ExecuteReader();
-
+            SqlDataReader reader = conectar.EjecutarConsulta(sqlConsulta);
             while (reader.Read())
             {
                 dataGridView1.Rows.Add(
@@ -49,6 +54,7 @@ namespace Vinateria
                 );
             }
 
+            conectar.CloseConnection();
             con.Close();
         }
 
@@ -74,7 +80,7 @@ namespace Vinateria
             NpgsqlConnection con = conectar.conexion();
 
             string sentencia1 = "SELECT * from productos where nomprod like '" + dato + "' or tipo like '" + dato + "' order by idprod;";
-
+            string sqlConsulta = "SELECT * FROM [Productos].[dbo].[infoProductos]";
             NpgsqlCommand cmd = new NpgsqlCommand(sentencia1, con);
             NpgsqlDataReader reader = cmd.ExecuteReader();
 

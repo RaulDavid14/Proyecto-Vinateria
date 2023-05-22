@@ -32,7 +32,7 @@ namespace Vinateria
             conectar.OpenConnection();
 
             string sqlSentencia = "SELECT * FROM [Empleados].[dbo].[infoEmpleado]  WHERE sUsuario = '" + textBox1.Text + "' AND sPassword = ''";
-            sqlSentencia = "SELECT dFechaIngreso FROM[Empleados].[dbo].[infoEmpleado]";
+            //sqlSentencia = "SELECT dFechaIngreso FROM[Empleados].[dbo].[infoEmpleado]";
             SqlDataReader reader = conectar.EjecutarConsulta(sqlSentencia);
            
 
@@ -40,10 +40,11 @@ namespace Vinateria
 
             while (reader.Read())
             {
-                if (reader.IsDBNull(13))
+                // revisar por que arroja exepción fuera de los límites
+                if (reader.IsDBNull(8))
                     fecha = "";
                 else
-                    fecha = reader.GetString(13);
+                    fecha = reader.GetString(8);
 
                 dataGridView1.Rows.Add(
                 reader.GetInt32(0), //id
@@ -51,12 +52,12 @@ namespace Vinateria
                 reader.GetString(2), //apellidos
                 reader.GetString(3), //RFC
                 reader.GetString(4), //Puesto
-                reader.GetString(12), //Fecha de ingreso
-                fecha, //fecha salida
-                reader.GetInt32(7),   //sueldo
-                reader.GetString(8),  //horario
-                reader.GetChar(9),     //genero
-                reader.GetString(10)  //usuario
+                //reader.GetString(12), //Fecha de ingreso
+                fecha //fecha salida
+                //reader.GetInt32(7),   //sueldo
+                //reader.GetString(8),  //horario
+                //reader.GetChar(9),     //genero
+                //reader.GetString(10)  //usuario
 
                 );
 
