@@ -16,8 +16,8 @@ namespace Vinateria
         public Agregar_Cliente()
         {
             InitializeComponent();
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList; //Cancelar escritura del combobox
-            comboBox1.Text = "Efectivo"; //Texto Empleado por defecto en combobox
+            cbMetodoPago.DropDownStyle = ComboBoxStyle.DropDownList; //Cancelar escritura del combobox
+            cbMetodoPago.Text = "Efectivo"; //Texto Empleado por defecto en combobox
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -28,8 +28,11 @@ namespace Vinateria
             ConexionDB sqlConectar = new ConexionDB();
 
             string sentencia = "Insert into clientes(nomclien,metpago,telefono) values" + 
-                " ('"+textBox1.Text+"','"+comboBox1.Text+"','"+textBox2.Text+"');";
-            string sqlSentencia = "INSERT INTO ";
+                " ('"+sNombreCliente.Text+"','"+cbMetodoPago.Text+"','"+tb.Text+"');";
+            string sqlSentencia = "INSERT INTO [Clientes].[dbo].[infoClientes] " +
+                "VALUES (" +
+                "'"+"'" +
+                ")";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sentencia, con);
             cmd.ExecuteReader();

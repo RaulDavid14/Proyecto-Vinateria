@@ -28,7 +28,7 @@ namespace Vinateria
             NpgsqlConnection con = conectar.conexion();
             
            
-            string sentencia = "INSERT INTO Empleados.dbo.infoEmpleado" +
+            string sentencia = "INSERT INTO [Empleados].[dbo].[infoEmpleado]" +
                                 "( [sNombre] " +
                                 ",[sApellidoPaterno] " +
                                 ",[sApellidoMaterno] " +

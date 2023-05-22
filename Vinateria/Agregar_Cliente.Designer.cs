@@ -30,12 +30,12 @@ namespace Vinateria
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.sNombreCliente = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbMetodoPago = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tb = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -49,16 +49,16 @@ namespace Vinateria
             this.label1.TabIndex = 1;
             this.label1.Text = "Nombre:";
             // 
-            // textBox1
+            // sNombreCliente
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBox1.Location = new System.Drawing.Point(106, 64);
-            this.textBox1.MaxLength = 30;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 13);
-            this.textBox1.TabIndex = 2;
+            this.sNombreCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.sNombreCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.sNombreCliente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.sNombreCliente.Location = new System.Drawing.Point(106, 64);
+            this.sNombreCliente.MaxLength = 30;
+            this.sNombreCliente.Name = "sNombreCliente";
+            this.sNombreCliente.Size = new System.Drawing.Size(100, 13);
+            this.sNombreCliente.TabIndex = 2;
             // 
             // label2
             // 
@@ -70,20 +70,20 @@ namespace Vinateria
             this.label2.TabIndex = 3;
             this.label2.Text = "Metodo de Pago:";
             // 
-            // comboBox1
+            // cbMetodoPago
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Efectivo",
-            "Tarjeta de credito",
-            "Tarjeta de debito"});
-            this.comboBox1.Location = new System.Drawing.Point(106, 92);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(109, 21);
-            this.comboBox1.TabIndex = 4;
+            this.cbMetodoPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.cbMetodoPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbMetodoPago.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.cbMetodoPago.FormattingEnabled = true;
+            this.cbMetodoPago.Items.AddRange(new object[] {
+            "1 --> Efectivo",
+            "2 -->Tarjeta de credito",
+            "3 -->Tarjeta de debito"});
+            this.cbMetodoPago.Location = new System.Drawing.Point(106, 92);
+            this.cbMetodoPago.Name = "cbMetodoPago";
+            this.cbMetodoPago.Size = new System.Drawing.Size(109, 21);
+            this.cbMetodoPago.TabIndex = 4;
             // 
             // button2
             // 
@@ -108,17 +108,17 @@ namespace Vinateria
             this.label3.TabIndex = 6;
             this.label3.Text = "Telefono:";
             // 
-            // textBox2
+            // tb
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBox2.Location = new System.Drawing.Point(106, 131);
-            this.textBox2.MaxLength = 13;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 13);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            this.tb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tb.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.tb.Location = new System.Drawing.Point(106, 131);
+            this.tb.MaxLength = 13;
+            this.tb.Name = "tb";
+            this.tb.Size = new System.Drawing.Size(100, 13);
+            this.tb.TabIndex = 7;
+            this.tb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // button1
             // 
@@ -140,12 +140,12 @@ namespace Vinateria
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(312, 292);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tb);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbMetodoPago);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.sNombreCliente);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Agregar_Cliente";
@@ -157,12 +157,12 @@ namespace Vinateria
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox sNombreCliente;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbMetodoPago;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tb;
         private System.Windows.Forms.Button button1;
     }
 }
