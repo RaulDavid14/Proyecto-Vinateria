@@ -29,6 +29,7 @@ namespace Vinateria
 
             string sentencia = "Insert into clientes(nomclien,metpago,telefono) values" + 
                 " ('"+textBox1.Text+"','"+comboBox1.Text+"','"+textBox2.Text+"');";
+            string sqlSentencia = "INSERT INTO ";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sentencia, con);
             cmd.ExecuteReader();

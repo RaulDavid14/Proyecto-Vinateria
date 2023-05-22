@@ -99,5 +99,15 @@ namespace Vinateria.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2023_05_21_at_11_30_55_PM {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp Image 2023-05-21 at 11.30.55 PM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
