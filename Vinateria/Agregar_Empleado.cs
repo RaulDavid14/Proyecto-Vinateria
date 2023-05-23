@@ -26,8 +26,8 @@ namespace Vinateria
             conectar.OpenConnection();
 
             //NpgsqlConnection con = conectar.conexion();
-            
-           
+
+
             string sentencia = "INSERT INTO [Empleados].[dbo].[infoEmpleado]" +
                                 "( [sNombre] " +
                                 ",[sApellidoPaterno] " +
@@ -36,23 +36,25 @@ namespace Vinateria
                                 ",[sUsuario] " +
                                 ",[sPassword] " +
                                 ",[dFechaIngreso] " +
-                                ",[catTipoEmpleado] ) VALUES" +
+                                ",[catTipoEmpleado]" +
+                                " ) VALUES" +
                                 "( '" + tbNombres.Text + "'" +
                                 ", '" + tbPaterno.Text + "'" +
                                 ", '" + tbMaterno.Text + "'" +
                                 ", '" + tbRFC.Text + "'" +
-                                ", '" + tbUsuario.Text + 
-                                ", '" + tbRFC + "'" +
+                                ", '" + tbUsuario.Text + "'" +
+                                ", '" + tbRFC.Text + "'" +
                                 ", GETDATE()" +
-                                "1" +
+                                ",1" +
                                 ")";
+                                
 
 
             SqlDataReader reader = conectar.EjecutarConsulta(sentencia);
             
                 MessageBox.Show("Empleado agregado con éxito.");
 
-           // con.Close();
+          
             conectar.CloseConnection();
 
             this.Close();
@@ -86,6 +88,11 @@ namespace Vinateria
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbUsuario_TextChanged(object sender, EventArgs e)
         {
 
         }

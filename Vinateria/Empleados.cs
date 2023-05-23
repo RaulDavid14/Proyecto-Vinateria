@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+
 using Npgsql;
 
 namespace Vinateria
@@ -32,8 +32,8 @@ namespace Vinateria
             ConexionDB conectar = new ConexionDB();
             conectar.OpenConnection();
 
-            string sqlSentencia = "SELECT * FROM [Empleados].[dbo].[infoEmpleado]  WHERE sUsuario = '" + textBox1.Text + "' AND sPassword = ''";
-            sqlSentencia = "SELECT dFechaIngreso FROM[Empleados].[dbo].[infoEmpleado]";
+            string sqlSentencia = "SELECT * FROM [Empleados].[dbo].[infoEmpleado]  WHERE sUsuario = '" + tbBuscar.Text + "' AND sPassword = ''";
+          
             SqlDataReader reader = conectar.EjecutarConsulta(sqlSentencia);
            
 
@@ -41,24 +41,22 @@ namespace Vinateria
 
             while (reader.Read())
             {
-                if (reader.IsDBNull(13))
+                if (reader.IsDBNull(8))
                     fecha = "";
                 else
-                    fecha = reader.GetString(13);
+                    fecha = reader.GetString(8);
+                    
 
                 dataGridView1.Rows.Add(
                 reader.GetInt32(0), //id
-                reader.GetString(1), //nombre
-                reader.GetString(2), //apellidos
-                reader.GetString(3), //RFC
-                reader.GetString(4), //Puesto
-                reader.GetString(12), //Fecha de ingreso
-                fecha, //fecha salida
-                reader.GetInt32(7),   //sueldo
-                reader.GetString(8),  //horario
-                reader.GetChar(9),     //genero
-                reader.GetString(10)  //usuario
-
+                reader.GetString(1), //nombres
+                reader.GetString(2), //paterno
+                reader.GetString(3), //materno
+                reader.GetString(4), //RFC
+                reader.GetString(5), // USUARIO
+                reader.GetString(7), //FECHA INGRESO
+                reader.GetInt32(8), //Puesto
+                reader.GetChar(9)     //genero
                 );
 
             }
@@ -93,9 +91,9 @@ namespace Vinateria
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            if (textBox1.TextLength > 0)
+            if (tbBuscar.TextLength > 0)
             {
-                string dato = "%" + textBox1.Text + "%";
+                string dato = "%" + tbBuscar.Text + "%";
                 getBuscar(dato);
             }
             else
@@ -109,37 +107,37 @@ namespace Vinateria
             dataGridView1.Rows.Clear();
 
             ConexionDB conectar = new ConexionDB();
-            NpgsqlConnection con = conectar.conexion();
+            conectar.OpenConnection();
 
             string sentencia1 = "SELECT *,cast(fechaingreso as varchar),cast(fechasalida as varchar) from empleados where nomemp like '" + dato + "' or apellidos like '" + dato + "';";
             
-            NpgsqlCommand cmd = new NpgsqlCommand(sentencia1, con);
-            NpgsqlDataReader reader = cmd.ExecuteReader();
+            string sConsulta = "SELECT  *" +
+                " ,CONVERT (NVARCHAR(10), [dFechaIngreso])" +
+                " FROM [Empleados].[dbo].[infoEmpleado]" +
+                " WHERE 1=1" +
+                "AND [sNombre] LIKE '" + dato + "'" +
+                "OR [sApellidoPaterno] LIKE '" + dato +"'" +
+                "OR [sApellidoMaterno] LIKE '" + dato + "'";
 
-            string fecha;
+            SqlDataReader reader = conectar.EjecutarConsulta(sConsulta);
 
+            
             while (reader.Read())
             {
-                if (reader.IsDBNull(13))
-                    fecha = "";
-                else
-                    fecha = reader.GetString(13);
+                
+                    
 
                 dataGridView1.Rows.Add(
-                reader.GetInt32(0), //id
-                reader.GetString(1), //nombre
-                reader.GetString(2), //apellidos
-                reader.GetString(3), //RFC
-                reader.GetString(4), //Puesto
-                reader.GetString(12), //Fecha de ingreso
-                fecha, //fecha salida
-                reader.GetInt32(7),   //sueldo
-                reader.GetString(8),  //horario
-                reader.GetChar(9),     //genero
-                reader.GetString(10)  //usuario
-
+                reader.GetInt32(0) //id
+                ,reader.GetString(1)
+                ,reader.GetString(2)
+                ,reader.GetString(3)
+                ,reader.GetString(4)
+                ,reader.GetDateTime(7)
+                ,reader.GetString(9)
+                ,reader.GetString(6)
                 );
-                
+
             }
             conectar.CloseConnection();
             
@@ -177,7 +175,7 @@ namespace Vinateria
                 conectar.CloseConnection();
                 
 
-                string dato = "%" + textBox1.Text + "%";
+                string dato = "%" + tbBuscar.Text + "%";
                 getBuscar(dato);
             }
         }
